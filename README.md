@@ -1,4 +1,4 @@
-# Svxlink_Monitor-OrangePi-ZERO-LTS
+# Svxlink_Monitor-OrangePi-ZERO-LTS - João Pessoa 21 de Julho de 2025 23:32:27Hs
 Instalação do display oled
 Como usar:
 Salve o script acima como install_svxlink_display.sh
