@@ -39,7 +39,7 @@ Este script completo vai:
 
 3 - Instalar todas as dependências necessárias
 
-4 - Configurar as fontes no diretório /root
+4 - Configurar as fontes no diretório /opt/svxlink_display/
 
 5 - Criar e ativar o serviço systemd
 
