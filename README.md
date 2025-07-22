@@ -33,15 +33,15 @@ systemctl restart svxlink_monitor.service
 
 Este script completo vai:
 
-Configurar automaticamente o I2C na porta 0
+1 - Configurar automaticamente o I2C na porta 0
 
-Criar um ambiente virtual Python isolado
+2 - Criar um ambiente virtual Python isolado
 
-Instalar todas as dependências necessárias
+3 - Instalar todas as dependências necessárias
 
-Configurar as fontes no diretório /root
+4 - Configurar as fontes no diretório /root
 
-Criar e ativar o serviço systemd
+5 - Criar e ativar o serviço systemd
 
-Iniciar automaticamente o display na inicialização do sistema
+6 - Iniciar automaticamente o display na inicialização do sistema
 
