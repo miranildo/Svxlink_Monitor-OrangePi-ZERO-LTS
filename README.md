@@ -2,6 +2,7 @@
 Instalação do display oled
 
 Como usar:
+
 Baixe o script install_svxlink_display.sh com o comando "wget https://github.com/miranildo/Svxlink_Monitor-OrangePi-ZERO-LTS/raw/refs/heads/main/install_svxlink_display.sh"
 
 Dê permissão de execução:
@@ -17,15 +18,19 @@ Script do Display (Svxlink_Monitor.py)
 Certifique-se de que o script do display esteja disponível no URL especificado (linha 48 do script de instalação) ou modifique o script para usar uma versão local.
 
 Pós-instalação:
+
 Verifique o status do serviço:
 
 systemctl status svxlink_monitor.service
+
 Visualize os logs:
 
 journalctl -u svxlink_monitor.service -f
+
 Reinicie o serviço se necessário:
 
 systemctl restart svxlink_monitor.service
+
 Este script completo vai:
 
 Configurar automaticamente o I2C na porta 0
