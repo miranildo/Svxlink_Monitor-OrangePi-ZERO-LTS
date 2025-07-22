@@ -24,6 +24,7 @@ apt install -y \
     fonts-dejavu fonts-font-awesome
 
 # 2. Habilitar I2C-0
+cp /boot/armbianEnv.txt /boot/armbianEnv.txt.bak
 echo "Configurando I2C..."
 if ! grep -q "i2c0" /boot/armbianEnv.txt; then
   echo "overlays=i2c0" >> /boot/armbianEnv.txt
@@ -106,8 +107,6 @@ Environment="PATH=/opt/svxlink_display/bin:/usr/local/sbin:/usr/local/bin:/usr/s
 ExecStart=/opt/svxlink_display/bin/python /opt/svxlink_display/Svxlink_Monitor.py
 Restart=always
 RestartSec=5
-StandardOutput=syslog
-StandardError=syslog
 SyslogIdentifier=svxlink_display
 
 [Install]
