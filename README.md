@@ -1,7 +1,7 @@
 # Svxlink_Monitor OrangePi ZERO LTS DEBIAN 12 ARMBIAN 2025
 Instalação do display oled
 
-O SvxLink já deverá está instalado e funcionando, bem como o SVXLink-Dash V2, o script instala todas as dependências para que funcione um Display OLED ligado na porta GPIO do OrangePi ZERO LTS.
+O SvxLink já deverá está instalado e funcionando, bem como o SVXLink-Dash V2, o script instala todas as dependências para que funcione um Display OLED ligado na porta GPIO do OrangePi ZERO LTS e atualiza o SVXLink-Dash V2 para a última versão, favor não atualizar o PHP.
 
 Pinos GPIO:
 
