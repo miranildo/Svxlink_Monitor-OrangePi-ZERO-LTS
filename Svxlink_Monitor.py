@@ -8,31 +8,33 @@ import socket
 from luma.core.interface.serial import i2c
 from luma.oled.device import ssd1306
 
-# Configurações do display
+# Configuração do display OLED
 WIDTH = 128
 HEIGHT = 64
 I2C_PORT = 0  # Porta I2C 0 para OrangePi Zero
 I2C_ADDRESS = 0x3C
 
-# Caminhos das fontes (ajuste conforme necessário)
-FONT_AWESOME_PATH = "/root/fa-solid-900.ttf"
-PIXEL_OPERATOR_PATH = "/root/PixelOperator.ttf"
-
 # Inicialização do display
 try:
     serial = i2c(port=I2C_PORT, address=I2C_ADDRESS)
     oled = ssd1306(serial, width=WIDTH, height=HEIGHT)
+    print("Display OLED inicializado com sucesso")
 except Exception as e:
-    print(f"Erro ao inicializar display: {e}")
+    print(f"Erro ao inicializar display OLED: {str(e)}")
     exit(1)
 
-# Carregamento das fontes
+# Criação de uma imagem para desenhar no display
+image = Image.new("1", (oled.width, oled.height))
+draw = ImageDraw.Draw(image)
+
+# Configuração de fontes
 try:
-    icon_font = ImageFont.truetype(FONT_AWESOME_PATH, 12)
-    font = ImageFont.truetype(PIXEL_OPERATOR_PATH, 16)
-except Exception as e:
-    print(f"Erro ao carregar fontes: {e}")
-    print("Usando fontes padrão como fallback")
+    # Tente carregar Font Awesome (ícones) e uma fonte padrão
+    icon_font = ImageFont.truetype("fa-solid-900.ttf", 12)
+    font = ImageFont.truetype("DejaVuSans.ttf", 11)
+except:
+    # Fallback para fontes padrão se as específicas não estiverem disponíveis
+    print("Usando fontes padrão - ícones não estarão disponíveis")
     icon_font = ImageFont.load_default()
     font = ImageFont.load_default()
 
@@ -46,9 +48,6 @@ unicode_icons = {
     "microphone": "\uf130",  # Microfone
     "antenna": "\uf0c1"  # Antena
 }
-
-# [Mantenha todas as outras funções exatamente como estão no script original:
-# get_ip_address(), get_cpu_temperature(), update_oled(), monitor_svxlink_log(), main()]
 
 def get_ip_address():
     """Obtém o endereço IP local"""
@@ -75,22 +74,27 @@ def get_cpu_temperature():
 
 def update_oled(info_lines, tx_active, rx_active):
     """Atualiza o display OLED com as informações"""
-    image = Image.new("1", (oled.width, oled.height))
-    draw = ImageDraw.Draw(image)
+    draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
     
     # Cabeçalho
     draw.rectangle((0, 0, oled.width, 15), fill=1)
     draw.text((oled.width // 2 - 30, 0), "PR7MLS-L", font=font, fill=0)
     
     # Informações do sistema
-    draw.text((5, 20), unicode_icons["wifi"], font=icon_font, fill=255)
-    draw.text((25, 20), info_lines['ip'], font=font, fill=255)
-    
-    draw.text((5, 35), unicode_icons["processor"], font=icon_font, fill=255)
-    draw.text((25, 35), f"{info_lines['cpu']}%", font=font, fill=255)
-    
-    draw.text((70, 35), unicode_icons["thermometer"], font=icon_font, fill=255)
-    draw.text((90, 35), info_lines['temp'], font=font, fill=255)
+    try:
+        draw.text((5, 20), unicode_icons["wifi"], font=icon_font, fill=255)
+        draw.text((25, 20), info_lines['ip'], font=font, fill=255)
+        
+        draw.text((5, 35), unicode_icons["processor"], font=icon_font, fill=255)
+        draw.text((25, 35), f"{info_lines['cpu']}%", font=font, fill=255)
+        
+        draw.text((70, 35), unicode_icons["thermometer"], font=icon_font, fill=255)
+        draw.text((90, 35), info_lines['temp'], font=font, fill=255)
+    except:
+        # Fallback se houver erro com as fontes
+        draw.text((5, 20), f"IP: {info_lines['ip']}", font=font, fill=255)
+        draw.text((5, 35), f"CPU: {info_lines['cpu']}%", font=font, fill=255)
+        draw.text((70, 35), f"Temp: {info_lines['temp']}", font=font, fill=255)
 
     # Status TX/RX
     tx_box = (5, 50, 60, 64)
@@ -174,17 +178,19 @@ def main():
                 update_oled(info, tx_active, rx_active)
             else:
                 # Tela 2: Informações do SVXLink
-                image = Image.new("1", (oled.width, oled.height))
-                draw = ImageDraw.Draw(image)
-                
+                draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
                 draw.rectangle((0, 0, oled.width, 15), fill=1)
                 draw.text((oled.width // 2 - 30, 0), "PR7MLS-L", font=font, fill=0)
                 
-                draw.text((5, 20), unicode_icons["antenna"], font=icon_font, fill=255)
-                draw.text((25, 20), conference, font=font, fill=255)
-                
-                draw.text((5, 35), unicode_icons["microphone"], font=icon_font, fill=255)
-                draw.text((19, 35), speaker, font=font, fill=255)
+                try:
+                    draw.text((5, 20), unicode_icons["antenna"], font=icon_font, fill=255)
+                    draw.text((25, 20), conference, font=font, fill=255)
+                    
+                    draw.text((5, 35), unicode_icons["microphone"], font=icon_font, fill=255)
+                    draw.text((19, 35), speaker, font=font, fill=255)
+                except:
+                    draw.text((5, 20), f"Conf: {conference}", font=font, fill=255)
+                    draw.text((5, 35), f"Speaker: {speaker}", font=font, fill=255)
                 
                 # Status TX/RX
                 tx_box = (5, 50, 60, 64)
