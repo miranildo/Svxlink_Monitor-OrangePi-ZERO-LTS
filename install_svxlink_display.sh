@@ -10,18 +10,12 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
-echo "=== Instalando Svxlink Monitor Display (versão completa) ==="
+echo "=== Instalando Svxlink Monitor Display ==="
 
-# 1. Atualizar sistema e instalar dependências COMPLETAS
+# 1. Atualizar sistema e instalar dependências
 echo "Instalando dependências do sistema..."
 apt update
-apt install -y \
-    python3-pip python3-dev python3-venv \
-    i2c-tools git \
-    libjpeg-dev zlib1g-dev libfreetype6-dev \
-    liblcms2-dev libopenjp2-7-dev libtiff5-dev \
-    libwebp-dev libharfbuzz-dev libfribidi-dev \
-    fonts-dejavu fonts-font-awesome
+apt install -y python3-pip python3-dev python3-venv i2c-tools git libjpeg-dev zlib1g-dev libfreetype6-dev liblcms2-dev libopenjp2-7-dev libtiff5-dev libwebp-dev libharfbuzz-dev libfribidi-dev fonts-dejavu fonts-font-awesome
 
 # 2. Habilitar I2C-0
 cp /boot/armbianEnv.txt /boot/armbianEnv.txt.bak
