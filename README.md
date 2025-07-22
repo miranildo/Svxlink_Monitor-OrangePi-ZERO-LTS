@@ -45,3 +45,5 @@ Este script completo vai:
 
 6 - Iniciar automaticamente o display na inicialização do sistema
 
+CRÉDITOS: https://github.com/LeoVichi/SVXLink_Monitor
+
