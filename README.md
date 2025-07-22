@@ -1,4 +1,4 @@
-# Svxlink_Monitor-OrangePi-ZERO-LTS - João Pessoa 21 de Julho de 2025 23:32:27Hs
+# Svxlink_Monitor OrangePi ZERO LTS DEBIAN 12 ARMBIAN 2025
 Instalação do display oled
 
 Como usar:
