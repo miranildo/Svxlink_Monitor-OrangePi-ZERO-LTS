@@ -39,7 +39,7 @@ Reinicie o serviço se necessário:
 
 systemctl restart svxlink_monitor.service
 
-Para qwue o display funcione é necessário um "reboot" ao final da instalação.
+Para que o display funcione é necessário um "reboot" ao final da instalação.
 
 Este script completo vai:
 
