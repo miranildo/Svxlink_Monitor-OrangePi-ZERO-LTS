@@ -1,15 +1,19 @@
 # Svxlink_Monitor-OrangePi-ZERO-LTS - João Pessoa 21 de Julho de 2025 23:32:27Hs
 Instalação do display oled
+
 Como usar:
-Salve o script acima como install_svxlink_display.sh
+Baixe o script install_svxlink_display.sh com o comando "wget https://github.com/miranildo/Svxlink_Monitor-OrangePi-ZERO-LTS/raw/refs/heads/main/install_svxlink_display.sh"
 
 Dê permissão de execução:
 
 chmod +x install_svxlink_display.sh
+
 Execute como root:
 
 sudo ./install_svxlink_display.sh
+
 Script do Display (Svxlink_Monitor.py)
+
 Certifique-se de que o script do display esteja disponível no URL especificado (linha 48 do script de instalação) ou modifique o script para usar uma versão local.
 
 Pós-instalação:
