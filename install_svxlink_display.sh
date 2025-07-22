@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script de instalação para Svxlink Monitor Display na OrangePi Zero LTS
 
-echo "Bloqueando atualizações do PHP8.3,evitando problemas com o SVXLink-Dashboard quando instalado..."
+echo "Bloqueando atualizações do PHP8.3, evitando problemas com o SVXLink-Dashboard quando instalado..."
 sudo apt-mark hold libapache2-mod-php libapache2-mod-php8.3 php php-bcmath php-cli php-common php-curl php-gd php-gmp php-mbstring php-mysql php-pear php-xml php-zip php8.3 php8.3-bcmath php8.3-cli php8.3-common php8.3-curl php8.3-gd php8.3-gmp php8.3-mbstring php8.3-mysql php8.3-opcache php8.3-readline php8.3-xml php8.3-zip
 
 # Verifica se é root
