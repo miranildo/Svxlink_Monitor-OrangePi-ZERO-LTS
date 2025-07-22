@@ -55,6 +55,5 @@ Este script completo vai:
 
 6 - Iniciar automaticamente o display na inicialização do sistema
 
-Créditos: https://github.com/LeoVichi/SVXLink_Monitor
-          e https://github.com/f5vmr/SVXLink-Dash-V2
+Créditos: https://github.com/sm0svx/svxlink | https://github.com/LeoVichi/SVXLink_Monitor | https://github.com/f5vmr/SVXLink-Dash-V2
 
