@@ -27,7 +27,16 @@ apt install -y \
 cp /boot/armbianEnv.txt /boot/armbianEnv.txt.bak
 echo "Configurando I2C..."
 if ! grep -q "i2c0" /boot/armbianEnv.txt; then
-  echo "overlays=i2c0" >> /boot/armbianEnv.txt
+  # Verifica se já existe a linha overlays
+  if grep -q "overlays=" /boot/armbianEnv.txt; then
+    # Adiciona i2c0 aos overlays existentes
+    sed -i '/overlays=/ s/$/ i2c0/' /boot/armbianEnv.txt
+  else
+    # Cria a linha overlays se não existir
+    echo "overlays=i2c0" >> /boot/armbianEnv.txt
+  fi
+  
+  # Adiciona parâmetro de ativação do I2C
   echo "param_i2c0_enable=1" >> /boot/armbianEnv.txt
   echo "i2c0" >> /etc/modules
   echo "Necessária reinicialização para ativar I2C"
