@@ -25,10 +25,6 @@ Execute como root:
 
 sudo ./install_svxlink_display.sh
 
-Script do Display (Svxlink_Monitor.py)
-
-Certifique-se de que o script do display esteja disponível no URL especificado (linha 48 do script de instalação) ou modifique o script para usar uma versão local.
-
 Pós-instalação:
 
 Verifique o status do serviço:
@@ -42,6 +38,8 @@ journalctl -u svxlink_monitor.service -f
 Reinicie o serviço se necessário:
 
 systemctl restart svxlink_monitor.service
+
+Para qwue o display funcione é necessário um "reboot" ao final da instalação.
 
 Este script completo vai:
 
