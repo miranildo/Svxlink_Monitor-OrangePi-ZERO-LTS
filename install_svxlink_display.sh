@@ -54,9 +54,9 @@ fi
 
 # 5. Configurar fontes
 echo "Configurando fontes em /root..."
-FONT_AWESOME="/root/fa-solid-900.ttf"
-PIXEL_OPERATOR="/root/PixelOperator.ttf"
-DEJAVUSANS="/root/DejaVuSans.ttf"
+FONT_AWESOME="/opt/svxlink_display/fa-solid-900.ttf"
+PIXEL_OPERATOR="/opt/svxlink_display/PixelOperator.ttf"
+DEJAVUSANS="/opt/svxlink_display/DejaVuSans.ttf"
 
 if [ ! -f "$FONT_AWESOME" ]; then
   echo "Baixando Font Awesome..."
@@ -121,7 +121,7 @@ systemctl start svxlink_monitor.service
 
 echo "Ajustando permissões..."
 chown -R root:root /opt/svxlink_display
-chmod 644 /root/*.ttf
+chmod 644 /opt/svxlink_display/*.ttf
 
 # 9. Verificar instalação
 echo -e "\nVerificação final:"
@@ -134,6 +134,13 @@ else
   journalctl -u svxlink_monitor.service -b --no-pager | tail -n 20
   echo -e "\nTente reiniciar o sistema após a instalação"
 fi
+
+# 10. Atualizando o SVXLink Dashboard
+mv /var/www/html /var/www/html.bak
+cd /var/www/
+sudo git clone https://github.com/f5vmr/SVXLink-Dash-V2 html
+cd html
+sudo ./upgrade.sh
 
 echo -e "\n=== Instalação concluída ==="
 echo "Reinicie o sistema para ativar as configurações de I2C: sudo reboot"
